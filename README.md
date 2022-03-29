@@ -6,19 +6,19 @@
 - 1.0.0-tsp.d.t : Use case driven model for the Transport SDN Pilot at Telefonica Germany
 
 ### UML
-
+- to be provided
 
 ### Overview 
-
+- to be provided
 
 ### GenDoc Export
-
+- to be provided
 
 ### Augmentation Condition
 - When statement in Augmentation statement demands for Profile::profileName==PROFILE_NAME_TYPE_SCHEDULER_PROFILE
 
 ### YANG File
-
+- to be provided
 
 ### JSON Schema
 - to be provided
