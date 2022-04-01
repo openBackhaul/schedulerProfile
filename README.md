@@ -18,7 +18,7 @@
 - When statement in Augmentation statement demands for Profile::profileName==PROFILE_NAME_TYPE_SCHEDULER_PROFILE
 
 ### YANG File
-- to be provided
+- [SchedulerProfile_1.0.0-tsp.220331.1800+yang.1](./SchedulerProfile_1.0.0-tsp.220331.1800+yang.1.zip)
 
 ### JSON Schema
 - to be provided
