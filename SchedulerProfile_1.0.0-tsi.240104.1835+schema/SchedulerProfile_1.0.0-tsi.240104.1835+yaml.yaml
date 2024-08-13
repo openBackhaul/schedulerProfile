@@ -1,0 +1,110 @@
+/profile-collection/profile={uuid}/scheduler-profile-1-0:scheduler-profile-pac/scheduler-profile-capability:
+  type: object
+  required:
+    - scheduler-profile-1-0:scheduler-profile-capability
+  properties:
+    scheduler-profile-1-0:scheduler-profile-capability:
+      type: object
+      required:
+        - scheduler-kind-configuration-is-avail
+        - available-queue-list
+      properties:
+        scheduler-kind-configuration-is-avail:
+          type: boolean
+        available-queue-list:
+          type: array
+          minItems: 1
+          maxItems: 8
+          x-key: queue-name
+          items:
+            type: object
+            required:
+              - queue-name
+              - available-scheduling-kind-list
+            properties:
+              queue-name:
+                type: string
+                enum:
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_BEST_EFFORT_QUEUE'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE1'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE2'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE3'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE4'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_EXPEDITED_FORWARDING_QUEUE'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_CLASS_SELECTOR_QUEUE6'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_CLASS_SELECTOR_QUEUE7'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_QUEUENAME_NOT_YET_DEFINED'
+              available-scheduling-kind-list:
+                type: array
+                minItems: 1
+                items:
+                  type: string
+                  enum:
+                    - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_STRICT'
+                    - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_WFQ'
+                    - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_WRR'
+                    - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_DWRR'
+                    - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_NOT_YET_DEFINED'
+
+/profile-collection/profile={uuid}/scheduler-profile-1-0:scheduler-profile-pac/scheduler-profile-configuration:
+  type: object
+  required:
+    - scheduler-profile-1-0:scheduler-profile-configuration
+  properties:
+    scheduler-profile-1-0:scheduler-profile-configuration:
+      type: object
+      required:
+        - queue-behavior-list
+      properties:
+        queue-behavior-list:
+          type: array
+          minItems: 1
+          maxItems: 8
+          x-key: queue-name
+          items:
+            type: object
+            required:
+              - queue-name
+              - scheduler-kind
+              - weighting
+            properties:
+              queue-name:
+                type: string
+                enum:
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_BEST_EFFORT_QUEUE'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE1'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE2'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE3'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_ASSURED_FORWARDING_QUEUE4'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_EXPEDITED_FORWARDING_QUEUE'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_CLASS_SELECTOR_QUEUE6'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_CLASS_SELECTOR_QUEUE7'
+                  - 'scheduler-profile-1-0:QUEUE_NAME_TYPE_QUEUENAME_NOT_YET_DEFINED'
+              scheduler-kind:
+                type: string
+                enum:
+                  - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_STRICT'
+                  - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_WFQ'
+                  - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_WRR'
+                  - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_DWRR'
+                  - 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_NOT_YET_DEFINED'
+              weighting:
+                type: integer
+                format: int8
+
+/scheduler-profile-1-0:create-scheduler-profile:
+  type: object
+  required:
+    - scheduler-profile-1-0:output
+  properties:
+    scheduler-profile-1-0:output:
+      type: object
+      required:
+        - created-scheduler-profile
+      properties:
+        created-scheduler-profile:
+          type: string
+
+/scheduler-profile-1-0:modify-scheduler-profile:
+
+/scheduler-profile-1-0:delete-scheduler-profile:

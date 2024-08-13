@@ -1,0 +1,81 @@
+@startuml SchedulerProfile_1.0.0-tsi.240104.1835+testsequence.1
+skinparam responseMessageBelowArrow true
+
+title
+SchedulerProfile_1.0.0-tsi.240104.1835+testsequence.1.plantuml
+end title
+
+participant "Postman" as Postman
+participant "Collection" as Collection
+participant "../profile-collection" as ProfileCollection
+participant "../scheduler-profile-capability" as Capability
+participant "../scheduler-profile-configuration" as Configuration
+participant "../createSchedulerProfile" as CreateRpc
+participant "../modifySchedulerProfile" as ModifyRpc
+participant "../deleteSchedulerProfile" as DeleteRpc
+
+activate Postman
+
+group Preparation
+  Postman --\\o Collection : mountName
+
+  Postman -> ProfileCollection
+  Postman <-- ProfileCollection : {(uuid, profileName)}
+  note right Postman
+    filter for
+    SchedulerProfile
+  end note
+  Postman --\\o Collection : schedulerProfileUuid1
+end
+
+group Capability Validation
+  Postman -> Capability
+  Postman <-- Capability : {capabilites}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : capabilites
+end
+
+group Configuration Validation
+  Postman -> Configuration
+  Postman <-- Configuration : {configuration}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : configuration
+end
+
+group Create RPC
+  Postman -> CreateRpc : {baseSchedulerProfile=schedulerProfileUuid1}
+  Postman <-- CreateRpc : {schedulerProfileUuid3}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : schedulerProfileUuid3
+  Postman -> Configuration
+  Postman <-- Configuration : {configuration}
+  note right Postman
+    configuration(schedulerProfileUuid3)==configuration(schedulerProfileUuid1)?
+  end note
+end
+
+group Modify RPC
+  Postman -> ModifyRpc : {existingSchedulerProfile=schedulerProfileUuid3, modifiedQueueBehaviorList}
+  Postman --\\o Collection : modifiedQueueBehaviorList
+  Postman <-- ModifyRpc : 204
+  Postman -> Configuration
+  Postman <-- Configuration : {configuration}
+  note right Postman
+    configuration(schedulerProfileUuid3)==modifiedQueueBehaviorList?
+  end note
+end
+
+group Delete RPC
+  Postman -> DeleteRpc : {obsoleteSchedulerProfile=schedulerProfileUuid3}
+  Postman <-- DeleteRpc : 204
+end
+
+deactivate Postman
+
+@enduml
