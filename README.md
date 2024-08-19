@@ -19,7 +19,7 @@
 ### YANG File  
 - [SchedulerProfile_1.0.0-tsi.240104.1835+yang.1](./SchedulerProfile_1.0.0-tsi.240104.1835+yang/scheduler-profile-1-0.yang)  
 
-### JSON Schema  
+### JSON and YAML Schemas  
 - [SchedulerProfile_1.0.0-tsi.240104.1835+schema](./SchedulerProfile_1.0.0-tsi.240104.1835+schema/)  
 
 ### Interface Simulator  
@@ -28,14 +28,14 @@
 ### Interface Validator  
 - [SchedulerProfile_1.0.0-tsi.240104.1835+validator](./SchedulerProfile_1.0.0-tsi.240104.1835+validator/)  
 
-### Publication
+### Publication  
 - Published as a part of ONF TR-532 v2.0  
 
-### Aspired Model Classification
-- Operational in Live Network
+### Aspired Model Classification  
+- Operational in Live Network  
 
-### Open Issue List
-- [schedulerProfile/issues](../../issues)
+### Open Issue List  
+- [schedulerProfile/issues](../../issues)  
 
-### Comments
-./.
+### Comments  
+./.  

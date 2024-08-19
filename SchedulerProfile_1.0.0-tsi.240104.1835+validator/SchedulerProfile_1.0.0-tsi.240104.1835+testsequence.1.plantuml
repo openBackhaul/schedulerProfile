@@ -2,7 +2,7 @@
 skinparam responseMessageBelowArrow true
 
 title
-SchedulerProfile_1.0.0-tsi.240104.1835+testsequence.1.plantuml
+SchedulerProfile_1.0.0-tsi.240104.1835+testsequence.1
 end title
 
 participant "Postman" as Postman
