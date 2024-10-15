@@ -1,0 +1,95 @@
+@startuml SchProf_1.0.0-tsi.240104.1835+diagram.completeness
+skinparam responseMessageBelowArrow true
+
+title
+SchedulerProfile_1.0.0-tsi.240104.1835+diagram.completeness
+end title
+
+participant "Postman" as Postman
+participant "Collection" as Collection
+participant "../profile-collection" as ProfileCollection
+participant "../scheduler-profile-capability" as Capability
+participant "../scheduler-profile-configuration" as Configuration
+participant "../createSchedulerProfile" as CreateRpc
+participant "../modifySchedulerProfile" as ModifyRpc
+participant "../deleteSchedulerProfile" as DeleteRpc
+
+activate Postman
+
+group Preparation
+  Postman --\\o Collection : mountName
+
+  Postman -> ProfileCollection
+  Postman <-- ProfileCollection : {(uuid, profileName)}
+  note right Postman
+    filter for
+    SchedulerProfile
+  end note
+  Postman --\\o Collection : schedulerProfileUuid
+end
+
+group Capability Validation
+Collection --\\o Postman : schedulerProfileUuid
+  Postman -> Capability : {schedulerProfileUuid}
+  Postman <-- Capability : {capabilites}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : schedulerProfileCapability
+end
+
+group Configuration Validation
+  Collection --\\o Postman : schedulerProfileUuid
+  Postman -> Configuration : {schedulerProfileUuid}
+  Postman <-- Configuration : {configuration}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : schedulerProfileConfiguration
+end
+
+group Create RPC
+  Collection --\\o Postman : schedulerProfileUuid
+  Postman -> CreateRpc : {baseSchedulerProfile=schedulerProfileUuid}
+  Postman <-- CreateRpc : {createdSchedulerProfileUuid}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : createdSchedulerProfileUuid
+  Collection --\\o Postman : createdSchedulerProfileUuid,\n schedulerProfileConfiguration
+  Postman -> Configuration : {createdSchedulerProfileUuid}
+  Postman <-- Configuration : {createdConfiguration}
+  note right Postman
+    createdConfiguration==schedulerProfileConfiguration?
+  end note
+  Postman --\\o Collection : createdQueueBehaviorList
+end
+
+group Modify RPC
+  Collection --\\o Postman : schedulerProfileCapability,\n createdSchedulerProfileUuid,\n createdQueueBehaviorList
+  Postman -> ModifyRpc : {existingSchedulerProfile=createdSchedulerProfileUuid, modifiedQueueBehaviorList}
+  Postman <-- ModifyRpc : 204
+  note right Postman
+    response==204?
+  end note
+  Postman --\\o Collection : modifiedQueueBehaviorList
+  Collection --\\o Postman : createdSchedulerProfileUuid,\n modifiedQueueBehaviorList
+  Postman -> Configuration : {createdSchedulerProfileUuid}
+  Postman <-- Configuration : {storedQueueBehaviorList}
+  note right Postman
+    storedQueueBehaviorList==modifiedQueueBehaviorList?
+  end note
+end
+
+group Delete RPC
+  Collection --\\o Postman : createdSchedulerProfileUuid
+  Postman -> DeleteRpc : {obsoleteSchedulerProfile=createdSchedulerProfileUuid}
+  Postman <-- DeleteRpc : 204
+  note right Postman
+    response==204?
+  end note
+end
+
+deactivate Postman
+
+@enduml

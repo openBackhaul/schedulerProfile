@@ -23,10 +23,10 @@
 - [SchedulerProfile_1.0.0-tsi.240104.1835+schema](./SchedulerProfile_1.0.0-tsi.240104.1835+schema/)  
 
 ### Interface Simulator  
-- [SchedulerProfile_1.0.0-tsi.240104.1835+simulator](./SchedulerProfile_1.0.0-tsi.240104.1835+simulator/)  
+- [SchedulerProfile_1.0.0-tsi.240104.1835+simulator](./SchedulerProfile_1.0.0-tsi.240104.1835+simu/)  
 
 ### Interface Validator  
-- [SchedulerProfile_1.0.0-tsi.240104.1835+validator](./SchedulerProfile_1.0.0-tsi.240104.1835+validator/)  
+- [SchedulerProfile_1.0.0-tsi.240104.1835+validator](./SchedulerProfile_1.0.0-tsi.240104.1835+vali/)  
 
 ### Publication  
 - Published as a part of ONF TR-532 v2.0  
