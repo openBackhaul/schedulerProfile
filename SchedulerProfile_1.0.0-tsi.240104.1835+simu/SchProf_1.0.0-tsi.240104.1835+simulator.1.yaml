@@ -159,8 +159,9 @@ paths:
                     properties:
                       created-scheduler-profile:
                         type: string
-                    example:
-                      created-scheduler-profile: 'string'
+                example:
+                  scheduler-profile-1-0:output:
+                    created-scheduler-profile: 'string'
           headers:
             x-correlator:
               $ref: '#/components/headers/x-correlator'

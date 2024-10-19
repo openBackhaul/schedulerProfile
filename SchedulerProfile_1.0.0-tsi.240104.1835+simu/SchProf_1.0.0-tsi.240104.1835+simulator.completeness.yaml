@@ -429,7 +429,7 @@ paths:
                             format: int8
               example:
                 input:
-                  existing-scheduler-profile: 'schedPro1'
+                  existing-scheduler-profile: 'schedPro3'
                   affected-queue-list:
                     - queue-name: 'scheduler-profile-1-0:QUEUE_NAME_TYPE_BEST_EFFORT_QUEUE'
                       scheduler-kind: 'scheduler-profile-1-0:SCHEDULER_KIND_TYPE_WFQ'
