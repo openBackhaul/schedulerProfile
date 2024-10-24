@@ -31,7 +31,7 @@
 ### Publication  
 - Published as a part of ONF TR-532 v2.0  
 
-### Aspired Model Classification  
+### Model Classification  
 - Operational in Live Network  
 
 ### Open Issue List  
